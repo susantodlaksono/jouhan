@@ -54,7 +54,7 @@ foreach ($report->result_array() as $v) {
 	$cell->setCellValue('I'.$i, $v['status_name']);
 	$i++;
 }
-$cell->setAutoFilter('A2:I2');
+// $cell->setAutoFilter('A2:I2');
 
 $cell->setTitle('Raw Data');
 
