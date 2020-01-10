@@ -15,9 +15,9 @@ $pe->setActiveSheetIndex(0);
 $cell = $pe->getActiveSheet();
 
 ##Style
-foreach ($this->mapping_report->excelColumnRange('A', 'I') as $column) {
-	$cell->getColumnDimension($column)->setAutoSize(true);
-}
+// foreach ($this->mapping_report->excelColumnRange('A', 'I') as $column) {
+// 	$cell->getColumnDimension($column)->setAutoSize(true);
+// }
 $cell->getStyle('A1:I1')->getAlignment()->setHorizontal(PHPExcel_Style_Alignment::HORIZONTAL_CENTER);
 $cell->getStyle('A1:I1')->getAlignment()->setVertical(PHPExcel_Style_Alignment::VERTICAL_CENTER);
 $cell->getStyle('A1:I1')->getFont()->setBold(TRUE);
@@ -42,18 +42,20 @@ $cell->setCellValue('H1', 'Proxy');
 $cell->setCellValue('I1', 'Status');
 
 $i = 3;
-foreach ($report->result_array() as $v) {
-	$cell->setCellValue('A'.$i, $v['first_name']);
-	$cell->setCellValue('B'.$i, date('Y-m-d', strtotime($v['created_twitter'])));
-	$cell->setCellValue('C'.$i, $v['phone_number']);
-	$cell->setCellValue('D'.$i, $v['email']);
-	$cell->setCellValue('E'.$i, $v['screen_name']);
-	$cell->setCellValue('F'.$i, $v['password']);
-	$cell->setCellValue('G'.$i, $v['client_name']);
-	$cell->setCellValue('H'.$i, $v['proxy_name']);
-	$cell->setCellValue('I'.$i, $v['status_name']);
-	$i++;
-}
+// if($report){
+//     foreach ($report->result_array() as $v) {
+//     	$cell->setCellValue('A'.$i, $v['first_name']);
+//     	$cell->setCellValue('B'.$i, date('Y-m-d', strtotime($v['created_twitter'])));
+//     	$cell->setCellValue('C'.$i, $v['phone_number']);
+//     	$cell->setCellValue('D'.$i, $v['email']);
+//     	$cell->setCellValue('E'.$i, $v['screen_name']);
+//     	$cell->setCellValue('F'.$i, $v['password']);
+//     	$cell->setCellValue('G'.$i, $v['client_name']);
+//     	$cell->setCellValue('H'.$i, $v['proxy_name']);
+//     	$cell->setCellValue('I'.$i, $v['status_name']);
+//     	$i++;
+//     }
+// }
 // $cell->setAutoFilter('A2:I2');
 
 $cell->setTitle('Raw Data');
