@@ -77,6 +77,7 @@ class M_email extends CI_Model{
          'phone_number' => $params['phone_number'],
          'phone_number_type' => $params['phone_number_type'],
          'email' => $params['email'],
+         'created_date' => date('Y-m-d H:i:s'),
          'display_name' => $params['display_name'],
          'password' => $params['password'],
          'birth_day' => $params['birth_day'] ? $params['birth_day'] : NULL,

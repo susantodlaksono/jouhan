@@ -66,7 +66,7 @@ foreach ($report->result_array() as $v) {
     }
 	$i++;
 }
-$cell->setAutoFilter('A2:J2');
+// $cell->setAutoFilter('A2:J2');
 
 $cell->setTitle('Raw Data');
 

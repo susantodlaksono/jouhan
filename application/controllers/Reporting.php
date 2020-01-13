@@ -166,6 +166,7 @@ class Reporting extends MY_Controller {
             $params['phone_number'] = NULL;
          }
       }
+      // echo json_encode($params['phone_number']);
       return $this->mapping_report->get($params, $params['filename'], 'download');
       
    }

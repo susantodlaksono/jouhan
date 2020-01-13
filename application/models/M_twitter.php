@@ -85,6 +85,7 @@ class M_twitter extends CI_Model{
          'display_name' => $params['display_name'],
          'screen_name' => strtolower($params['screen_name']),
          'password' => $params['password'],
+         'created_date' => date('Y-m-d H:i:s'),
          'created_twitter' => $params['created_twitter'] ? $params['created_twitter'] : NULL,
          'birth_date' => $params['birth_date'] ? $params['birth_date'] : NULL,
          'cookies' => $params['cookies'] ? $params['cookies'] : NULL,

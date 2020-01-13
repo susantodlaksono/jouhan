@@ -80,6 +80,7 @@ class M_instagram extends CI_Model{
          'username' => strtolower($params['username']),
          // 'birth_date' => $params['birth_date'],
          'birth_date' => NULL,
+         'created_date' => date('Y-m-d H:i:s'),
          'created_instagram' => $params['created_instagram'],
          'password' => $params['password'],
          'cookies' => $params['cookies'] ? $params['cookies'] : NULL,

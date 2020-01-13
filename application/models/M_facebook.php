@@ -164,6 +164,7 @@ class M_facebook extends CI_Model{
          'display_name' => $params['display_name'],
          'url' => 'https://www.facebook.com/'.$params['url'],
          'birth_date' => $params['birth_date'],
+         'created_date' => date('Y-m-d H:i:s'),
          'created_facebook' => $params['created_facebook'],
          'facebook_id' => $params['facebook_id'] ? $params['facebook_id'] : NULL,
          'password' => $params['password'],

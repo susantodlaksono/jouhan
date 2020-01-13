@@ -105,6 +105,7 @@ class M_simcard extends CI_Model{
          'phone_number' => $params['phone_number'],
          'active_period' => $params['active_period'],
          'expired_date' => $params['expired_date'],
+         'created_date' => date('Y-m-d H:i:s'),
          'nik' => $params['nik'] ? $params['nik'] : NULL,
          'nkk' => $params['nkk'] ? $params['nkk'] : NULL,
          'saldo' => $params['saldo'] ? $params['saldo'] : NULL,

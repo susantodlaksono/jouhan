@@ -537,6 +537,7 @@ class Bulk_uploader{
 	                  $tmp['nkk'] = $v['nkk'];
 	                  $tmp['saldo'] = $v['saldo'];
 	                  $tmp['info'] = $v['info'];
+                     $tmp['created_date'] = date('Y-m-d H:i:s');
 	                  
 	                  if($v['provider_id']){
       						$provider = $this->ci->db->where('id', $v['provider_id'])->count_all_results('provider');
@@ -657,6 +658,7 @@ class Bulk_uploader{
                      $tmp['birth_day'] = $v['birth_day'];
                      $tmp['status'] = $v['status_id'];
                      $tmp['info'] = $v['info'];
+                     $tmp['created_date'] = date('Y-m-d H:i:s');
                      
                      if($v['user_id'] && $v['user_id'] !== 0){
                         $user_id = $this->ci->db->where('id', $v['user_id'])->count_all_results('users');
@@ -775,6 +777,7 @@ class Bulk_uploader{
                      $tmp['consumer_secret'] = $v['consumer_secret'];
                      $tmp['access_token'] = $v['access_token'];
                      $tmp['info'] = $v['info'];
+                     $tmp['created_date'] = date('Y-m-d H:i:s');
                      $tmp['access_token_secret'] = $v['access_token_secret'];
 
                      if($v['client_id'] && $v['client_id'] !== 0){
@@ -889,6 +892,7 @@ class Bulk_uploader{
                      $tmp['created_facebook'] = $v['created_facebook'];
                      $tmp['facebook_id'] = $v['facebook_id'];
                      $tmp['password'] = $v['password'];
+                     $tmp['created_date'] = date('Y-m-d H:i:s');
                      $tmp['cookies'] = $v['cookies'];
                      $tmp['access_token'] = $v['access_token'];
                      $tmp['friends'] = $v['friends'];
@@ -1007,6 +1011,7 @@ class Bulk_uploader{
                      $tmp['password'] = $v['password'];
                      $tmp['cookies'] = $v['cookies'];
                      $tmp['followers'] = $v['followers'];
+                     $tmp['created_date'] = date('Y-m-d H:i:s');
                      $tmp['info'] = $v['info'];
                      $tmp['status'] = $v['status'];
 

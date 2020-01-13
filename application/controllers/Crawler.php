@@ -37,23 +37,9 @@ class Crawler extends MY_Controller {
           	exit();
          }
      	} else {
-         redirect('main');
+         redirect('crawler');
      	}
  	}
-
-   public function on_duplicate($table, $data, $exclude = array(), $db_section = 'default') {
-      $this->db = $this->load->database($db_section, TRUE);
-      $updatestr = array();
-      foreach ($data as $k => $v) {
-         if (!in_array($k, $exclude)) {
-            $updatestr[] = '`' . $k . '`="' . $this->db->escape_str($v) . '"'; // server
-         }
-      }
-      $query = $this->db->insert_string($table, $data);
-      $query .= ' ON DUPLICATE KEY UPDATE ' . implode(', ', array_filter($updatestr));
-      $this->db->query($query);
-      return $this->db->affected_rows();
-   }
 
    public function expired_date_simcard(){
    	$result['status'] = TRUE;
@@ -107,36 +93,6 @@ class Crawler extends MY_Controller {
    	$this->_db->where('expired_date < "'.$now.'"');
    	$rs = $this->_db->update('simcard', array('status' => 2));
    	return $this->_db->affected_rows();
-   }
-
-   public function sync_cluster_isr(){
-      $count = 0;
-      $result = $this->getCluster();
-      if($result){
-         foreach($result as $v){
-            $tmp = array(
-               'c_id' => $v['c_id'],
-               'c_name' => $v['c_name'],
-               'c_create_date' => $v['c_create_date'],
-               'c_users' => $v['c_users'],
-               'c_generals' => $v['c_generals'],
-               'c_commanders' => $v['c_commanders'],
-               'c_soldiers' => $v['c_soldiers'],
-               'c_ip_address' => $v['c_ip_address'],
-            );
-            $insert = $this->on_duplicate('isr_cluster', $tmp);
-            $insert ? $count++ : FALSE;
-         }
-      }
-      $message = $count.' Affected Rows';
-      $logs = date('Y-m-d H:i:s') . ' ' . $message . "\n";
-      echo $logs;
-      exit();
-   }
-
-   public function getCluster(){
-      $this->_db = $this->load->database('isr_main', TRUE);
-      return $this->_db->get('cluster')->result_array();
    }
 
 }
