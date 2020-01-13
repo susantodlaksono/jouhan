@@ -10,15 +10,15 @@ class M_Proxy extends CI_model{
       $this->db->join('users as b', 'a.user_id = b.id', 'left');
       $this->db->join('(select a.proxy_id, count(a.proxy_id) as total_twitter 
                         from twitter as a 
-                        where a.status in(3,10) group by a.proxy_id) as c', 
+                        group by a.proxy_id) as c', 
                         'a.id = c.proxy_id', 'left');
       $this->db->join('(select a.proxy_id, count(a.proxy_id) as total_facebook 
                         from facebook as a 
-                        where a.status in(1) group by a.proxy_id) as d', 
+                        group by a.proxy_id) as d', 
                         'a.id = d.proxy_id', 'left');
       $this->db->join('(select a.proxy_id, count(a.proxy_id) as total_instagram 
                         from instagram as a 
-                        where a.status in(1) group by a.proxy_id) as e', 
+                        group by a.proxy_id) as e', 
                         'a.id = e.proxy_id', 'left');
       
       if($params['filter_keyword'] != ''){
