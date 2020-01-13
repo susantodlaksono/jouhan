@@ -54,7 +54,8 @@ class MY_Controller extends MX_Controller {
          'log_module_id' => $module_id,
          'log_user_id' => $user_id
       );
-      $this->db->insert('log', $obj);
+      // $this->db->insert('log', $obj);
+      return TRUE;
    }
    public function render_widget($data, $css = FALSE) {
       $data['container'] = $this->input->get('container');
