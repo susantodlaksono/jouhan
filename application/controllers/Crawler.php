@@ -24,7 +24,7 @@ class Crawler extends MY_Controller {
         ));
 
      	if (php_sapi_name() == 'cli') {
-      	$logs = date('Y-m-d H:i:s') . ' ' . json_encode($data) . "\n";
+      	$logs = date('Y-m-d H:i:s') . " \n" . json_encode($data) . "\n";
       	echo $logs;
       	exit();
      	}
@@ -94,5 +94,36 @@ class Crawler extends MY_Controller {
    	$rs = $this->_db->update('simcard', array('status' => 2));
    	return $this->_db->affected_rows();
    }
+
+   public function sync_cluster_isr(){
+      $cluster = $this->getClusterISR();
+      if($cluster){
+         $this->load->library('lib_active_record');
+         $count = 0;
+         foreach ($cluster as $v) {
+            $tmp = array(
+               'c_id' => $v['c_id'],
+               'c_name' => $v['c_name'],
+               'c_create_date' => $v['c_create_date'],
+               'c_users' => $v['c_users'],
+               'c_generals' => $v['c_generals'],
+               'c_commanders' => $v['c_commanders'],
+               'c_soldiers' => $v['c_soldiers'],
+               'c_ip_address' => $v['c_ip_address'],
+               'c_sync_date' => date('Y-m-d H:i:s')
+            );
+            $insert = $this->lib_active_record->on_duplicate('isr_cluster', $tmp, array('c_sync_date'));
+            $insert ? $count++ : FALSE;
+         }
+      }
+      $this->session->set_flashdata('message', array('success' => $count . ' Cluster Synced'));
+      $this->_redirect($this->input->get('_redirect'), array('message' => $count . ' Cluster Synced'));
+   }
+
+   private function getClusterISR(){
+      $this->_db = $this->load->database('isr_main', TRUE);
+      return $this->_db->get('cluster')->result_array();
+   }
+
 
 }
